@@ -1,2 +1,2 @@
 $py = if (Test-Path .venv/bin/python) { '.venv/bin/python' } else { 'python' }
-& $py "src\buffer-overflow-ia_main.py"
+& $py "src\buffer_overflow_ia_main.py"

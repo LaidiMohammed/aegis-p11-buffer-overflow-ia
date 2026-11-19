@@ -3,21 +3,21 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from src import buffer-overflow-ia_main
+from src import buffer_overflow_ia_main
 
 
 def test_smoke_structure():
-    out = buffer-overflow-ia_main.smoke("x", "y")
+    out = buffer_overflow_ia_main.smoke("x", "y")
     assert out["ok"] is True
 
 
 def test_main_returns_0():
-    assert buffer-overflow-ia_main.main([]) == 0
+    assert buffer_overflow_ia_main.main([]) == 0
 
 
 def test_main_json_output():
     import contextlib, io, json
     with contextlib.redirect_stdout(io.StringIO()) as buf:
-        assert buffer-overflow-ia_main.main(["--json"]) == 0
+        assert buffer_overflow_ia_main.main(["--json"]) == 0
     data = json.loads(buf.getvalue())
     assert data["project"] == "P11"
