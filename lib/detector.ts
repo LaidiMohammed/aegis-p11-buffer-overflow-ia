@@ -1,12 +1,12 @@
 const PATTERNS: [RegExp, string][] = [
-  [/sprintf\s*\([^,]+,\s*[^,]+\)/i, "sprintf sans taille limite"],
-  [/strcat\s*\([^,]+,\s*[^,]+\)/i, "strcat sans taille limite"],
-  [/strcpy\s*\([^,]+,\s*[^,]+\)/i, "strcpy sans taille limite"],
-  [/\bgets\s*\(/i, "fonction gets déconseillée (overflow massif)"],
-  [/snprintf\s*\([^,]+,\s*[0-9]+,\s*[^,]+\)/i, "snprintf avec taille explicite"],
-  [/malloc\s*\([0-9]+\)/i, "allocation malloc de taille fixe"],
-  [/char\s+\*?\s*\w+\s*\[\s*[0-9]+\s*\]/i, "char buffer fixe (risque sprintf)"],
-  [/\.len\s*-\s*1\s*\)?/i, "pattern off-by-one potentiel"],
+  [/sprintf\s*\([^,]+,\s*[^,]+\)/gi, "sprintf sans taille limite"],
+  [/strcat\s*\([^,]+,\s*[^,]+\)/gi, "strcat sans taille limite"],
+  [/strcpy\s*\([^,]+,\s*[^,]+\)/gi, "strcpy sans taille limite"],
+  [/\bgets\s*\(/gi, "fonction gets déconseillée (overflow massif)"],
+  [/snprintf\s*\([^,]+,\s*[0-9]+,\s*[^,]+\)/gi, "snprintf avec taille explicite"],
+  [/malloc\s*\([0-9]+\)/gi, "allocation malloc de taille fixe"],
+  [/char\s+\*?\s*\w+\s*\[\s*[0-9]+\s*\]/gi, "char buffer fixe (risque sprintf)"],
+  [/\.len\s*-\s*1\s*\)?/gi, "pattern off-by-one potentiel"],
 ];
 export function analyzeFile(content: string, fileName: string = "source.c") {
   const found: Array<{ pattern: string; match: string; line: number; column: number }> = [];
